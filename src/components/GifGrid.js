@@ -1,7 +1,14 @@
+import {useState, useEffect } from 'react'
 
 const GifGrid = ({category})=>{
+    const [count, setCount] = useState(0)
+
+    useEffect(()=>{
+        imageFun()
+    },[])
 
     const imageFun = async() =>{
+
         
         const url = 'http://api.giphy.com/v1/gifs/search?q=dragon+ball&limit=5&api_key=BiJC2KNUNfnKN1JKYKg6b7pz5CNJ7piG'
     
@@ -17,14 +24,21 @@ const GifGrid = ({category})=>{
             }
         })
     
-        console.log(data)
         console.log(dataImge)
     }
 
-    imageFun()
+  
 
     return (
-        <li>{category}</li>
+        <div>
+
+        <h3>{count}</h3>
+        <h3>{category}</h3>
+
+        <button onClick={ ()=>setCount(count + 1)}>click</button>
+
+        </div>
+
     )
 
 }
