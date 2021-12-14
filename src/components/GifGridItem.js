@@ -6,7 +6,7 @@ const GifGridItem =({id,title,url})=>{
 
     return (
 
-        <div>
+        <div className='box'>
 
             <img src={url} alt={title} />
             <p>{title}</p>

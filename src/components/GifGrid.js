@@ -1,49 +1,32 @@
-import {useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import GifGridItem from './GifGridItem'
+import {imageFun} from '../helper/GetGifs'
 
-const GifGrid = ({category})=>{
+const GifGrid = ({ category }) => {
     const [images, setImages] = useState([])
     console.log(category)
 
-    useEffect(()=>{
-        imageFun()
-    },[])
+    useEffect(() => {
+        imageFun(category)
+       .then(data => setImages(data))
+    }, [])
 
-    const imageFun = async() =>{
-
-        
-        const url = 'http://api.giphy.com/v1/gifs/search?q=fairy+tail&limit=10&api_key=BiJC2KNUNfnKN1JKYKg6b7pz5CNJ7piG'
-    
-        const response = await fetch(url)
-        const {data} = await response.json()
-
-
-        const dataImge = data.map((item)=>{
-            return {
-                id:item.id,
-                title:item.title,
-                url: item.images.downsized_medium.url
-            }
-        })
-    
-        console.log(dataImge)
-        setImages(dataImge)
-    }
-
-  
+   
 
     return (
-        <div>
 
-        
-       <ol>
-           {images.map((item)=>(
-               <GifGridItem key={item.id} {...item} />
-           ))}
-       </ol>
+        <>
+            <h2>{category}</h2>
 
-        </div>
+            <div  className='card'>
+                
+                    {images.map((item) => (
+                        <GifGridItem key={item.id} {...item} />
+                    ))}
+                
+            </div>
 
+        </>
     )
 
 }
