@@ -2,7 +2,7 @@
 const GifGridItem =({title,image})=>{
 
     return(
-        <div>
+        <div className='card'>
             <img src={image} alt={title} />
             <p>{title}</p>
             
