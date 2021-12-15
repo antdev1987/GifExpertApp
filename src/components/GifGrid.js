@@ -1,7 +1,9 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
+import GifGridItem from './GifGridItem'
 
 const GifGrid = ({ category }) => {
 
+    const [images, setImages]= useState([])
     
     useEffect(()=>{
         getGif()
@@ -9,7 +11,7 @@ const GifGrid = ({ category }) => {
     
     const getGif =async()=>{
         
-        const url = 'http://api.giphy.com/v1/gifs/search?q=dragon+ball&limit=5&api_key=BiJC2KNUNfnKN1JKYKg6b7pz5CNJ7piG'
+        const url = 'http://api.giphy.com/v1/gifs/search?q=dragon+ball&limit=4&api_key=BiJC2KNUNfnKN1JKYKg6b7pz5CNJ7piG'
         const res = await fetch(url)
         const {data} = await res.json()
 
@@ -21,15 +23,27 @@ const GifGrid = ({ category }) => {
             }
         })
 
-        console.log(data)
-        console.log(BDgif)
+        
+        setImages(BDgif)
     }
 
 
 
 
     return (
-        <h3>{category}</h3>
+        <>
+            <h3>{category}</h3>
+        
+            {
+                images.map(item =>(
+                    <GifGridItem 
+                        key={item.id}
+                        {...item}
+                    />
+                ))
+            }
+        
+        </>
     )
 
 }

@@ -11,7 +11,7 @@ const AddCategory = ({setCategories}) => {
     const handleSubmit =(e)=>{
         e.preventDefault()
 
-        if(inputValue.trim().length == 0){
+        if(inputValue.trim().length === 0){
             alert('you have to type something')
             return
         }
