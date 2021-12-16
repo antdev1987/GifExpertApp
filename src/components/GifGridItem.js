@@ -1,18 +1,12 @@
-import React from 'react'
 
-const GifGridItem =({id,title,url})=>{
+const GifGridItem =({title,image})=>{
 
-    console.log(id)
-
-    return (
-
-        <div className='box'>
-
-            <img src={url} alt={title} />
+    return(
+        <div className='card'>
+            <img src={image} alt={title} />
             <p>{title}</p>
-
+            
         </div>
-
     )
 
 }
